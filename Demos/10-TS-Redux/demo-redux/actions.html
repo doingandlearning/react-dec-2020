@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Actions</title>
+	<style>
+		body {
+			font-family: Calibre, sans-serif;
+		}
+	</style>
+		
+    <script src="https://unpkg.com/redux@4.0.5/dist/redux.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+	<script type="text/babel">
+
+		// Create an action object that represents the "add product" feature.
+		const action1 =  {
+			type: "ADD_PRODUCT",
+			id: 1,
+			description: "Swansea City Shirt",
+			price: 55.99,
+			likes: 0,
+			mostRecentLike: undefined
+		}
+
+		// Create an action object that represents the "like product" feature.
+		const action2 = {
+			type: "LIKE_PRODUCT",
+			id: 1
+		}
+		
+		// Create an action object that represents the "remove product" feature.
+		const action3 = {
+			type: "REMOVE_PRODUCT",
+			id: 1
+		}
+
+		// Create an action object that represents the "change sort order for products" feature.
+		const action4 = {
+		   type: "SORT_PRODUCTS",
+		   sortBy: "SORTED_BY_LIKES"
+		}
+		
+	</script>
+</body>
+</html>

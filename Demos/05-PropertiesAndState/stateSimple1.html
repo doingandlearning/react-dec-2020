@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple State Management Example (Class Components)</title>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+    </style>
+</head>
+<body>
+
+	<div id="root"></div>
+
+    <script src="https://unpkg.com/prop-types/prop-types.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+	<script type="text/babel">
+
+		class HitCounter extends React.Component {
+
+			constructor(props) {
+				super(props)
+				this.state = {
+					hitCount: 0,
+					lastUpdated: new Date()
+				}
+			}
+
+			onClickHandler() {
+				this.setState({
+					hitCount: this.state.hitCount+1, 
+					lastUpdated: new Date()
+				})
+			}
+
+			render() {
+				return (
+					<React.Fragment>
+						<h1>Simple state management (class components)</h1>
+						<div>
+							<button onClick={() => this.onClickHandler()}>Click me</button>
+							<p>Hit count:    <b>{this.state.hitCount}</b></p>
+							<p>Last updated: <b>{this.state.lastUpdated.toLocaleTimeString()}</b></p>
+						</div>
+					</React.Fragment>
+				)
+			}
+		}
+
+		ReactDOM.render(
+			<HitCounter/>, 
+			document.getElementById('root')
+		)
+
+	</script>
+
+</body>
+</html>

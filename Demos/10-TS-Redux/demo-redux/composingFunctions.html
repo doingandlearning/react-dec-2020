@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Composing functions</title>
+	<style>
+		body {
+			font-family: Calibre, sans-serif;
+		}
+	</style>
+
+    <script src="https://unpkg.com/redux@4.0.5/dist/redux.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+	<h1>See console for output</h1>
+	
+	<script type="text/babel">
+
+		// State - same as before.
+		const initialState = {
+			products: [
+				{
+					id: 1,
+					description: "Swansea City Shirt",
+					price: 55.99,
+					likes: 0,
+					mostRecentLike: undefined
+				},
+				{
+					id: 2,
+					description: "Cardiff City Shirt",
+					price: 1.99,
+					likes: 0,
+					mostRecentLike: undefined
+				},
+				{
+					id: 3,
+					description: "Bugatti Divo",
+					price: 4000000,
+					likes: 0,
+					mostRecentLike: undefined
+				}
+			],
+			sort: "SORTED_BY_DESCRIPTION"
+		}
+
+		// Reducer for product - same as before.
+		const product = (state = {}, action) => {
+			switch (action.type) {
+				case "ADD_PRODUCT":
+					return {
+						id: action.id,
+						description: action.description,
+						price: action.price,
+						likes: action.likes,
+						mostRecentLike: action.mostRecentLike
+					}
+				case "LIKE_PRODUCT":
+					return (state.id !== action.id) ?
+						state :
+						{
+							...state,
+							likes: state.likes+1,
+							mostRecentLike: new Date()
+						}
+				default :
+					return state
+			}
+		}
+		
+		// Reducer for products - same as before.
+        const products = (state = [], action) => {
+            switch (action.type) {
+                case "ADD_PRODUCT" :
+                    return [
+                        ...state,
+                        product({}, action)
+                    ]
+                case "LIKE_PRODUCT" :
+                    return state.map(
+                        p => product(p, action)
+                    )
+                case "REMOVE_PRODUCT" :
+                    return state.filter(
+                        p => p.id !== action.id
+                    )
+                default:
+                    return state
+            }
+        }
+
+		// Reducer for sort - same as before.
+        const sort = (state="SORTED_BY_DESCRIPTION", action) => {
+            switch (action.type) {
+                case "SORT_PRODUCTS":
+                    return action.sortBy
+                default :
+                    return state
+            }
+        }
+
+		// Create the Redux store, with a combination of all top-level reducers and state - same as before.
+		const store = Redux.createStore(
+			Redux.combineReducers({products, sort}),
+			initialState
+		)
+		
+		let nextId = 4    // This is for simplicity, to generate a new product ID every time.
+		
+		// Define action creators - same as before.
+		const addProduct = (description, price) => {
+			return {
+				type: "ADD_PRODUCT",
+				id: nextId++,
+				description,
+				price,
+				likes: 0,
+				mostRecentLike: undefined
+			}
+		}
+		
+		const likeProduct = id => {
+			return {
+				type: "LIKE_PRODUCT",
+				id: id
+			}
+		}
+		
+		const removeProduct = id => {
+			return {
+				type: "REMOVE_PRODUCT",
+				id: id
+			}
+		}
+		
+		const sortProducts = sortByField => {
+
+			let sortBy = ""
+
+			if (sortByField === "description")
+				sortBy = "SORTED_BY_DESCRIPTION"
+			else if (sortByField === "price")
+				sortBy = "SORTED_BY_PRICE"
+			else 
+				sortBy = "SORTED_BY_LIKES"
+
+			return {
+				type: "SORT_PRODUCTS",
+				sortBy: sortBy
+			}
+		}
+
+		// Compose some functions to add products. These functions are evaluated last-first.
+		const addProducts = Redux.compose(
+			() => store.dispatch(addProduct("Carving skis", 350)),
+			() => store.dispatch(addProduct("Ski boots", 180)),
+			() => store.dispatch(addProduct("55in OLED HDTV", 1800))
+		)
+
+		// Compose some functions to achieve the same effect as the following:
+		// console.log(store.getState().products.map(p=>p.description).join(", "))				
+		const logProductDescriptions = Redux.compose(
+			str => console.log(str),
+			descriptions => descriptions.join(", "),
+			products => products.map(p => p.description),
+			state => state.products
+		)
+
+		addProducts()
+		logProductDescriptions(store.getState())
+
+	</script>
+</body>
+</html>

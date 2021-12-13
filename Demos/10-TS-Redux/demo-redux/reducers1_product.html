@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redux reducers - product reducer</title>
+	<style>
+		body {
+			font-family: Calibre, sans-serif;
+		}
+	</style>
+
+    <script src="https://unpkg.com/redux@4.0.5/dist/redux.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+	<h1>See console for output</h1>
+	
+	<script type="text/babel">
+
+		// Reducer for product.
+		const product = (state = {}, action) => {
+			switch (action.type) {
+				case "ADD_PRODUCT":
+					return {
+						id: action.id,
+						description: action.description,
+						price: action.price,
+						likes: 0,
+						mostRecentLike: undefined
+					}
+				case "LIKE_PRODUCT":
+					return (state.id !== action.id) ?
+						state :
+						{
+							...state,
+							likes: state.likes+1,
+							mostRecentLike: new Date()
+						}
+				default :
+					return state
+			}
+		}
+
+		// For the product reducer, test the ADD_PRODUCT action.
+		let action =  {
+			type: "ADD_PRODUCT",
+			id: 1,
+			description: "Swansea City Shirt",
+			price: 55.99
+		}
+		let newProduct = product({}, action)
+		console.log(newProduct)
+
+		// For the product reducer, test the LIKE_PRODUCT action.
+		action = {
+			type: "LIKE_PRODUCT",
+			id: 1
+		}
+		newProduct = product(newProduct, action)
+		console.log(newProduct)
+
+	</script>
+</body>
+</html>

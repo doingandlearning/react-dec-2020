@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Creating Multiple Elements</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script>
+      const retailer = React.createElement(
+        "div",
+        { id: "retailerInfo" },
+        React.createElement("h1", null, "Games"),
+        React.createElement(
+          "ul",
+          null,
+          React.createElement("li", null, "Halo"),
+          React.createElement("li", null, "Hades"),
+          React.createElement("li", null, "Minecraft"),
+          React.createElement("li", null, "Fortnite"),
+          React.createElement("li", null, "Hollow Knight")
+        ),
+        React.createElement("h1", null, "Cities"),
+        React.createElement(
+          "ul",
+          null,
+          React.createElement("li", null, "London"),
+          React.createElement("li", null, "Belfast"),
+          React.createElement("li", null, "Chicago"),
+          React.createElement("li", null, "Paris")
+        )
+      );
+
+      ReactDOM.render(retailer, document.getElementById("root"));
+    </script>
+  </body>
+</html>

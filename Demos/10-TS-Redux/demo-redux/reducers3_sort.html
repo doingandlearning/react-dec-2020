@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redux reducers - sort reducer</title>
+	<style>
+		body {
+			font-family: Calibre, sans-serif;
+		}
+	</style>
+
+    <script src="https://unpkg.com/redux@4.0.5/dist/redux.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+	<h1>See console for output</h1>
+
+	<script type="text/babel">
+
+		const sort = (state="SORTED_BY_DESCRIPTION", action) => {
+			switch (action.type) {
+				case "SORT_PRODUCTS":
+					return action.sortBy
+				default :
+					return state
+			}
+		}
+
+		let state = "SORTED_BY_DESCRIPTION"
+
+		let action =  {
+		   type: "SORT_PRODUCTS",
+		   sortBy: "SORTED_BY_PRICE"
+		}
+		let nextState = sort(state, action)
+		console.log(nextState)
+
+		action = {
+		   type: "SORT_PRODUCTS",
+		   sortBy: "SORTED_BY_RATING"
+		}
+		nextState = sort(nextState, action)
+		console.log(nextState)
+
+		action = {
+		   type: "SORT_PRODUCTS",
+		   sortBy: "SORTED_BY_LIKES"
+		}
+		nextState = sort(nextState, action)
+		console.log(nextState)
+
+	</script>
+</body>
+</html>

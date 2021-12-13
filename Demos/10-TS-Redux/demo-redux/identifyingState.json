@@ -1,0 +1,26 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "description": "Swansea City Shirt",
+            "price": 55.99,
+            "likes": 0,
+            "mostRecentLike": null
+        },
+        {
+            "id": 2,
+            "description": "Cardiff City Shirt",
+            "price": 1.99,
+            "likes": 0,
+            "mostRecentLike": null
+        },
+        {
+            "id": 3,
+            "description": "Bugatti Divo",
+            "price": 4000000,
+            "likes": 0,
+            "mostRecentLike": null
+        }
+    ],
+    "sort": "SORTED_BY_DESCRIPTION"
+}

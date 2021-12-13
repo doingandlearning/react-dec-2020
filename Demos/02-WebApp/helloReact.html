@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World Example in React</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+<script>
+
+    const msg = React.createElement(
+      'h1', 
+      {id: 'my-msg', 'title': 'This is my message'},
+      'Hello React!'
+    )
+
+    ReactDOM.render(msg, document.getElementById('root'))
+    console.log(msg)
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+﻿form.addProduct label {
+    width: 100px;
+    display: inline-block;
+}
+
+form.addProduct div {
+    margin-bottom: 5px; 
+}
+

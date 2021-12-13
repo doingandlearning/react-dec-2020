@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Creating Multiple Elements Via Data</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script>
+      const games = [
+        "Hollow Knight",
+        "Halo",
+        "Hades",
+        "Minecraft",
+        "Fortnite",
+        "Destiny",
+      ];
+
+      const cities = ["Brighton", "Belfast", "Phoenix", "Chicago"];
+
+      const gamesList = React.createElement(
+        "ul",
+        null,
+        games.map((game, i) => React.createElement("li", { key: i }, game))
+      );
+
+      const citiesList = React.createElement(
+        "ul",
+        null,
+        cities.map((city, i) => React.createElement("li", { key: i }, city))
+      );
+
+      const details = React.createElement(
+        "div",
+        null,
+        React.createElement("h1", null, "Games"),
+        gamesList,
+        React.createElement("h1", null, "Cities"),
+        citiesList
+      );
+
+      ReactDOM.render(details, document.getElementById("root"));
+    </script>
+  </body>
+</html>

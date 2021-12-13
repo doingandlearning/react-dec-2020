@@ -1,0 +1,27 @@
+{
+    "name": "retailers-directory-app2",
+    "version": "1.0.0",
+    "description": "Modular app via webpack, example 2",
+    "main": "index.js",
+    "dependencies": {
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
+    },
+    "devDependencies": {
+        "@babel/core": "7.15.0",
+        "babel-loader": "8.2.2",
+        "@babel/preset-env": "7.15.0",
+        "@babel/preset-react": "7.14.5",
+        "autoprefixer": "10.3.3",
+        "css-loader": "6.2.0",
+        "opener": "1.5.2",
+        "postcss-loader": "6.1.1",
+        "style-loader": "3.2.1",
+        "concurrently": "6.2.1",
+        "webpack": "5.51.1",
+        "webpack-cli": "4.8.0"
+    },
+    "scripts": {
+        "start": "webpack --progress && concurrently \"webpack --progress --watch\" \"live-server dist\" "
+    }
+}

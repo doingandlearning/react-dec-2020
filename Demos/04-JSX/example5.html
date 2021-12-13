@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSX Example 5</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<link rel="stylesheet" href="example5.css">
+	
+</head>
+<body>
+	<div id='root'></div>
+
+	<script type="text/babel">
+
+        const retailersData = [
+            {
+                "retailerName": "Acme Incorporated",
+                "products": [
+                    { "description": "Swansea City Shirt", "price": 53.00, "unitsInStock": 501 },
+                    { "description": "Cardiff City Shirt", "price": 1.99,  "unitsInStock": 29000 },
+                    { "description": "Bugatti Divo", "price": 4000000, "unitsInStock": 5 },
+                    { "description": "55in OLED HDTV", "price": 1500, "unitsInStock": 25 },
+                ],
+                "shops": [
+                    { "city": "London", "country": "UK" },
+                    { "city": "New York", "country": "USA" },
+                    { "city": "Paris", "country": "France" },
+                ]
+            },
+            {
+                "retailerName": "Mountains'R'Us",
+                "products": [
+                    { "description": "Carving skis", "price": 350.00, "unitsInStock": 1000 },
+                    { "description": "Ski boots", "price": 170.50,  "unitsInStock": 700 },
+                ],
+                "shops": [
+                    { "city": "Val d'Isere", "country": "France" },
+                    { "city": "St. Anton", "country": "Austria" },
+                    { "city": "Kitzbuhel", "country": "Austria" },
+                ]
+            },
+        ]
+
+        function Retailer(props) {
+            return (
+                <fieldset>                          
+                    <legend>{props.retailerName}</legend>
+
+                    <h4>Products</h4>
+                    <ul className="products">
+                    {
+                        props.products.map((p, i) => <li key={i}> {p.description} </li>)
+                    }
+                    </ul>
+                    
+                    <h4>Shops</h4>
+                    <ul className="shops">
+                    {
+                        props.shops.map((s, i) => <li key={i}> {s.city} </li>)
+                    }
+                    </ul>
+                
+                </fieldset>
+            )
+        }
+
+        function App(props) {
+            return (
+                <React.Fragment>
+                    <h1>{props.title}</h1>
+                    {
+                        props.retailers.map((r, i) => <Retailer key={i} {...r} />)
+                    }
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(
+            <App title="Totally Awesome Retailers" retailers={retailersData} />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

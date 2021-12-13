@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSX Example 3</title>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+    </style>
+</head>
+<body>
+
+<div id='root'></div>
+
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+<script type="text/babel">
+
+    const data = ["Swansea shirt", "Cardiff shirt", "Lamborghini"]
+
+    function ItemsList() {
+        const timestamp = new Date().toLocaleTimeString()
+        return (
+            <div>
+                <h1>JSX Example 3</h1>
+                <ul>
+                    { data.map((item, i) => <li key={i}>{item}</li>) }
+                </ul>
+                <hr/>
+                <small>Page generated at {timestamp}</small>               
+            </div>
+        )
+    }
+
+    ReactDOM.render(
+        <ItemsList />,    
+        document.getElementById('root')
+    )
+
+</script>
+
+</body>
+</html>
