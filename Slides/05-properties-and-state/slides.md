@@ -38,6 +38,8 @@ drawings:
 
 # Problem Statement
 
+<v-clicks>
+
 JavaScript is a dynamically typed language
   - There's no "compiler" to check that you've assigned the correct type of value to a variable
   - The first you know about a type problem is when the app crashes!
@@ -45,6 +47,8 @@ JavaScript is a dynamically typed language
 This is unsatisfactory
   - It makes your code potentially untrustworthy
   - It puts a lot more pressure on your rigour during testing
+
+</v-clicks>
 
 ---
 
@@ -68,6 +72,8 @@ https://unpkg.com/prop-types/prop-types.js
 
 # How to Specify Property Types
 
+<v-clicks>
+
 When you define a component, specify the types for all its properties
   - How to do this depends on how you define the component (class or functional component) 
 
@@ -75,6 +81,8 @@ You can specify if a property is required/optional
   - You can also specify default values for the optional ones
 
 We'll investigate all these techniques in this chapter
+
+</v-clicks>
 
 ---
 
