@@ -103,7 +103,7 @@ To enable routing in a React application, you must create a "router" component
 - Activates the appropriate component, for current URL
 
 In a web app, react-router-dom provides two different types of router:
-- <BrowserRouter> and <HashRouter>
+- `<BrowserRouter>` and `<HashRouter>`
 - We'll discuss the differences shortly
 
 ---
@@ -111,7 +111,7 @@ In a web app, react-router-dom provides two different types of router:
 # Creating a Router Component (2 of 2)
 
 To use a router, render a "router" component at the root of your element hierarchy
-Typically, you wrap your <App> root element in a router:
+Typically, you wrap your `<App>` root element in a router:
 
 ```
 import { BrowserRouter } from "react-router-dom";
@@ -131,7 +131,7 @@ layout: two-cols
 
 # Defining a Route Table
 
-Define a route table via <Switch> and <Route>
+Define a route table via `<Switch>` and `<Route>`
 
 Notes:
 - Each route maps a relative path to a component
@@ -166,14 +166,14 @@ export default App;
 
 ---
 
-# <BrowserRouter> vs. <HashRouter>
+# `<BrowserRouter>` vs. `<HashRouter>`
 
-<BrowserRouter> is preferred in production
+`<BrowserRouter>` is preferred in production
 - Uses regular URLs, e.g. example.com/products
 - Supports HTML5 browser history
 - Requires server config (serve home page for all requests)
 
-<HashRouter> can be useful during development
+`<HashRouter>` can be useful during development
 - Uses # in URLs, e.g. example.com/#/products
 - Doesn't require server config 
 
@@ -349,7 +349,7 @@ Go to the demo-app-3 folder and run
 
 # How to Display a Link
 
-To define a link, use <Link> as shown below
+To define a link, use `<Link>` as shown below
 - (Also see App.tsx, where we render the menu)
 
 ```
@@ -397,11 +397,11 @@ nav a:hover {
 
 # Link vs. NavLink
 
-As well as <Link>, React also provides <NavLink>
-- <NavLink> is similar to <Link>, except…
-- <NavLink> applies active CSS style to current link 
+As well as `<Link>`, React also provides `<NavLink>`
+- `<NavLink>` is similar to `<Link>`, except…
+- `<NavLink>` applies active CSS style to current link 
 
-For an example of how to use <NavLink>:
+For an example of how to use `<NavLink>`:
 - See MenuWithNavLinks.tsx
 
 For an example of how to style the active link:

@@ -43,6 +43,8 @@ drawings:
 
 # Overview of Redux 
 
+<v-clicks>
+
 Redux helps you manage state in an application
 
 Redux has a store
@@ -55,9 +57,13 @@ Redux has action objects
 Redux has reducer functions
 - Receives current state and action, returns updated state
 
+</v-clicks>
+
 ---
 
 # Identifying state 
+
+<v-clicks>
 
 When you build a Redux app, the first thing you should do is to think about state
 - What data will your app be manipulating and displaying?
@@ -68,9 +74,13 @@ A good approach is to try to write down a JSON object that contains all the stat
 Let's think about state for a product management app 
 - See identifyingState.json 
 
+</v-clicks>
+
 ---
 
 # Defining actions
+
+<v-clicks>
 
 The next step is to think about what actions can happen in the system, which cause state to be updated
 - i.e. what do you want the application to actually do?
@@ -82,9 +92,13 @@ Our product management app needs these actions:
 Think what data you need to perform each action
 - See actions.html
 
+</v-clicks>
+
 ---
 
 # Defining reducers
+
+<v-clicks>
 
 Actions are "carried out" by reducer functions
 
@@ -97,9 +111,13 @@ Each reducer function:
 - Receives some state (e.g. product), plus an action param
 - Returns new state (e.g. updated product)
 
+</v-clicks>
+
 ---
 
 # Creating a Redux store
+
+<v-clicks>
 
 The next step is to create the Redux store
 - You do this via Redux.createStore(…)
@@ -111,9 +129,13 @@ Pass 2 parameters:
 Example:
 - See store1\_createStore.html
 
+</v-clicks>
+
 ---
 
 # Dispatching actions to a Redux store
+
+<v-clicks>
 
 When something happens in your app, dispatch an action to the Redux store to update the app's state:
 - Create an action object with info about what's happened
@@ -123,9 +145,13 @@ When something happens in your app, dispatch an action to the Redux store to upd
 Example:
 - See store2\_dispatchingActions.html
 
+</v-clicks>
+
 ---
 
 # Subscribing to store changes
+
+<v-clicks>
 
 You can subscribe to state-changes in the Redux store
 - You specify a call-back function, which Redux will call whenever any state in the store changes
@@ -137,9 +163,13 @@ Why is this useful?
 Example:
 - See store3\_subscribingStoreChanges.html
 
+</v-clicks>
+
 ---
 
 # Defining action creators
+
+<v-clicks>
 
 When you start implementing your React code, you'll create action objects to trigger state updates
 - E.g. when the user clicks the "Add Product" button, you'll create an "Add Product" action object
@@ -150,9 +180,13 @@ It’s important you create these action objects correctly
 Example:
 - See actionCreators.html
 
+</v-clicks>
+
 ---
 
 # Aside: Composing functions
+
+<v-clicks>
 
 This is an optional (but nice) technique…
 - You can compose several functions together into a single function via Redux.compose()
@@ -160,6 +194,8 @@ This is an optional (but nice) technique…
 
 Example:
 - See composingFunctions.html
+
+</v-clicks>
 
 ---
 
@@ -179,6 +215,8 @@ Example:
 
 # Recap of Redux Store concepts
 
+<v-clicks>
+
 Here's a recap of what we've seen so far with Redux...
 - Actions (objects that describe a desired change)
 - Reducers (functions that return new state)
@@ -186,9 +224,13 @@ Here's a recap of what we've seen so far with Redux...
 - Dispatching actions to Redux Store, e.g. due to UI events
 - Subscribing to Redux Store changes
 
+</v-clicks>
+
 ---
 
 # Using Redux in a full application
+
+<v-clicks>
 
 We're now going to see how to use Redux in a full React application
 - How to organize your code
@@ -199,24 +241,32 @@ We're now going to see how to use Redux in a full React application
 We'll also introduce the React Redux library
 - Connects a Redux Store to your React components
 
+</v-clicks>
+
 ---
 
 # Example application
+
+<v-clicks>
 
 Go to the demo-app folder and run
 - There are 5 examples
 - Incremental complexity
 
+</v-clicks>
+
 ---
 
 # Dependencies for React Redux
+
+<v-clicks>
 
 To use React Redux, add the following dependencies in your package.json file
 
 ```json
 {
   "dependencies": {
-     "react-redux": "^7.2.4",
+    "react-redux": "^7.2.4",
      "@types/react-redux": "^7.1.18",
     …
   },
@@ -226,11 +276,12 @@ To use React Redux, add the following dependencies in your package.json file
 
 You can make these changes as follows:
 
+```bash
+npm install --save react-redux                 # [for TypeScript or JavaScript]
+npm install --save @types/react-redux          #         [for TypeScript only]
 ```
-npm install --save react-redux                 [for TypeScript or JavaScript]
 
-npm install --save @types/react-redux                   [for TypeScript only]
-```
+</v-clicks>
 
 ---
 

@@ -1,120 +1,156 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
+  <head>
+    <meta charset="utf-8" />
     <title>My Library</title>
-    <link href="styles.css" rel="stylesheet">
-</head>
-<body>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
 
-<div id='root'></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types/prop-types.js"></script>
 
-<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
 
-<script type="text/babel">
-
-    class Book {
+    <script type="text/babel">
+      class Book {
         constructor(title, author) {
-            this.title = title
-            this.author = author
+          this.title = title;
+          this.author = author;
         }
 
         toString() {
-            return `${this.title}, by ${this.author}`
+          return `${this.title}, by ${this.author}`;
         }
-    }
+      }
 
-    class Film {
+      class Film {
         constructor(name, genre, blurb) {
-            this.name = name
-            this.genre = genre
-            this.blurb = blurb
+          this.name = name;
+          this.genre = genre;
+          this.blurb = blurb;
         }
 
         toString() {
-            return `${this.name} [${this.genre}], ${this.blurb}`
+          return `${this.name} [${this.genre}], ${this.blurb}`;
         }
-    }
+      }
 
-    const books = [
-        new Book('Millennium', 'Stieg Larsson'),
-        new Book('A Christmas Carol', 'Charles Dickens'),
-        new Book('The Son', 'Jo Nesbo'),
-    ]
+      const books = [
+        new Book("Millennium", "Stieg Larsson"),
+        new Book("A Christmas Carol", "Charles Dickens"),
+        new Book("The Son", "Jo Nesbo"),
+      ];
 
-    const films = [
-        new Film('Airplane', 'Comedy', 'Classic plane spoof'),
-        new Film('Skyfall', 'Adventure', 'Bond spy yarn'),
-        new Film('Love Actually', 'RomCom', ' Hugh Grant playing Hugh Grant')
-    ]
-    
-    function ItemsList(props) {
-        const ListTag = props.ordered ? 'ol' : 'ul'
+      const films = [
+        new Film("Airplane", "Comedy", "Classic plane spoof"),
+        new Film("Skyfall", "Adventure", "Bond spy yarn"),
+        new Film("Love Actually", "RomCom", " Hugh Grant playing Hugh Grant"),
+      ];
+
+      function ItemsList({ ordered = false, items = [] }) {
+        const ListTag = ordered ? "ol" : "ul";
         return (
-            <ListTag>
-            {
-                props.items.map((item, i) => <li key={i}>{item.toString()} </li> )
-            }
-            </ListTag>
-        )
-    }
+          <ListTag>
+            {items.map((item, i) => (
+              <li key={i}>{item.toString()} </li>
+            ))}
+          </ListTag>
+        );
+      }
 
-    function Table(props) {
-        return (
-            <table>
-                <TableHead sampleObject={props.items[0]} />
-                <TableBody objects={props.items} />
-            </table>
-        )
-    }
-    
-    function TableHead(props) {
-        return (
-            <thead>
-                <TableRow data={Object.keys(props.sampleObject)} head={true} />
-            </thead>
-        )
-    }
+      ItemsList.propTypes = {
+        ordered: PropTypes.bool.isRequired,
+        items: PropTypes.array.isRequired,
+      };
 
-    function TableBody(props) {
+      function Table(props) {
         return (
-            <tbody>
-            {
-                props.objects.map((obj, i) => <TableRow key={i} data={Object.values(obj)} head={false} />)
-            }
-            </tbody>
-        )
-    }
+          <table>
+            <TableHead sampleObject={props.items[0]} />
+            <TableBody objects={props.items} />
+          </table>
+        );
+      }
 
-    function TableRow(props) {
-        const CellTag = props.head ? 'th' : 'td'
+      Table.propTypes = {
+        items: PropTypes.arrayOf(PropTypes.object),
+      };
+
+      function TableHead(props) {
         return (
-            <tr>
-            {
-                props.data.map((d, i) => <CellTag key={i}>{d}</CellTag>)
-            }
-            </tr>
-        )
-    }
+          <thead>
+            <TableRow data={Object.keys(props.sampleObject)} head={true} />
+          </thead>
+        );
+      }
 
-    const library = 
+      function TableBody(props) {
+        return (
+          <tbody>
+            {props.objects.map((obj, i) => (
+              <TableRow key={i} data={Object.values(obj)} head={false} />
+            ))}
+          </tbody>
+        );
+      }
+
+      function TableRow(props) {
+        const CellTag = props.head ? "th" : "td";
+        return (
+          <tr>
+            {props.data.map((d, i) => (
+              <CellTag key={i}>{d}</CellTag>
+            ))}
+          </tr>
+        );
+      }
+
+      function LikePanel() {
+        const [likes, setLikes] = React.useState(0);
+
+        return (
+          <React.Fragment>
+            <h3>Like My Library</h3>
+            <div className="container">
+              <p>
+                Likes: <strong>{likes}</strong>
+                <p>
+                  <button onClick={() => setLikes(likes + 1)}>Like</button>
+                </p>
+                <p>
+                  <button onClick={() => setLikes(0)}>Reset like count</button>
+                </p>
+              </p>
+            </div>
+          </React.Fragment>
+        );
+      }
+
+      const library = (
         <div>
-            <h1>My Library</h1>
-            <h2>Books list</h2>
-            <ItemsList items={books} ordered={true} />
-            <h2>Films list</h2>
-            <ItemsList items={films} ordered={true} />        
-            <h2>Books table</h2>
-            <Table items={books} />
-            <h2>Films table</h2>
-            <Table items={films} />
+          <h1>My Library</h1>
+          <h2>Books list</h2>
+          <ItemsList items={books} ordered={true} />
+          <h2>Films list</h2>
+          <ItemsList items={films} ordered={true} />
+          <h2>Books table</h2>
+          <Table items={books} />
+          <h2>Films table</h2>
+          <Table items={films} />
+          <LikePanel />
         </div>
-    
-    ReactDOM.render(library, document.getElementById('root'))
+      );
 
-</script>
-
-</body>
+      ReactDOM.render(library, document.getElementById("root"));
+    </script>
+  </body>
 </html>

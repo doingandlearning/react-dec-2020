@@ -19,7 +19,7 @@ function App() {
           <Redirect to="/products" />
         </Route>
 
-        <Route path="/products">
+        <Route  path="/products">
           <Products />
         </Route>
 

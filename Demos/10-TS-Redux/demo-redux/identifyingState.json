@@ -22,5 +22,6 @@
             "mostRecentLike": null
         }
     ],
-    "sort": "SORTED_BY_DESCRIPTION"
+    "sort": "SORTED_BY_DESCRIPTION",
+    "isExistingCustomer": true
 }

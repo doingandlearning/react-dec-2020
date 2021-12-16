@@ -12,7 +12,7 @@ function Products() {
 				<h1>Products</h1>
 				<ul>
 					{products.map((product, i) =>
-						<li key={i}>
+						<li key={product.id}>
 							<Link to={`product/${product.id}`}>{product.description}</Link>
 						</li>
 					)}

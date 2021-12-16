@@ -31,6 +31,12 @@ drawings:
 
 ---
 
+# Morning 👋🏻
+
+What is your biggest take-away/question from yesterday?
+
+---
+
 # Lifecycle Methods
 
 - Overview

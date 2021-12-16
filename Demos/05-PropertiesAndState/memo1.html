@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Memoization 4</title>
+    <title>Complete State Management Example (Functional Components)</title>
     <style>
-      body {
-        font-family: Consolas;
+      .gallery {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        position: fixed;
+        width: 100%;
+        left: 4%;
+        -webkit-transform: translateX(-2%);
+        transform: translateX(-2%);
       }
-      .panel {
-        background: #0677bb;
-        color: white;
-        margin-top: 10px;
-        padding-left: 5px;
-        padding-bottom: 5px;
+      .largeImage {
+        width: 94%;
+      }
+      .smallImage {
+        width: 10%;
+        margin-right: 2%;
       }
     </style>
   </head>
@@ -26,34 +31,28 @@
     <script type="text/babel">
       function Panel({ title, text }) {
         let count = React.useRef(0);
+
         console.log(`Rendered at ${new Date().toString()}`);
 
-        // Cache a particular piece of content.
-        const firstRendered = React.useMemo(
-          () => <div>Initial: {new Date().toString()}</div>,
-          [count]
-        );
-
         return (
-          <div className="panel">
+          <div>
             <h2>{title}</h2>
-            <div>Painted: {count.current++} times</div>
-            <div>Textbox: {text}</div>
-            {firstRendered}
+            <p>{text}</p>
+            <div>Painted: {count.current++} times </div>
             <div>Updated: {new Date().toString()}</div>
           </div>
         );
       }
 
-      const MemoizedPanel = React.memo(Panel);
+      function useCachedVersion(prevProps, nextProps) {
+        return prevProps.text.length == nextProps.text.length;
+      }
 
-      const MemoizedPanelWithComparisonFunction = React.memo(
-        Panel,
-        (prevProps, nextProps) => prevProps.text.length == nextProps.text.length
-      );
+      const MemoizedPanel = React.memo(Panel, useCachedVersion);
 
       function App() {
         const [text, setText] = React.useState("");
+        const [title, setTitle] = React.useState("Normal panel");
         return (
           <div>
             <input
@@ -61,12 +60,13 @@
               placeholder="Enter text here"
               onChange={(e) => setText(e.target.value)}
             />
-            <Panel title="Normal panel" text={text} />
-            <MemoizedPanel title="Memoized panel" text={text} />
-            <MemoizedPanelWithComparisonFunction
-              title="Memoized panel with comparison function"
-              text={text}
+            <input
+              value={title}
+              placeholder="Enter Title here"
+              onChange={(e) => setTitle(e.target.value)}
             />
+            <Panel title={title} text={text} />
+            <MemoizedPanel title={title} text={text} />
           </div>
         );
       }

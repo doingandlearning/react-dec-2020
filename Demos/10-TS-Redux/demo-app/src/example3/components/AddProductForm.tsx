@@ -9,15 +9,19 @@ function AddProductForm({store}: any) {
 	let descrElem = React.useRef<HTMLInputElement>(null) 
 	let priceElem = React.useRef<HTMLInputElement>(null)
 
+	const [description, setDescription] = React.useState<string>("")
+	// const [price, setPrice] = React.useState<string>("")
+
 	// Handle the "onSubmit" event for the form.
 	// Dispatch an appropriate action to the Redux store, to represent the product to add.
     const onAddProduct = (event: any) => {
 		event.preventDefault()
-		if (descrElem.current && priceElem.current) {
-			store.dispatch(addProduct(descrElem.current.value, Number(priceElem.current.value)) )
-			descrElem.current.focus()
-			descrElem.current.value = ''
+		if (priceElem.current) {
+			store.dispatch(addProduct(description, Number(priceElem.current.value)) )
+			// descrElem.current.focus()
+			// descrElem.current.value = ''
 			priceElem.current.value = ''
+			setDescription("")
 		}
     }
 
@@ -30,7 +34,7 @@ function AddProductForm({store}: any) {
 			<form className="addProduct" onSubmit={onAddProduct}>
 				<div>
 					<label>Description</label>
-					<input type="text" required ref={descrElem} />
+					<input type="text" required value={description} onChange={(e) => setDescription(e.target.value)} />
 				</div>
 				
 				<div>

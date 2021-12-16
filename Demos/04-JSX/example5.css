@@ -24,3 +24,7 @@ legend {
     border: 1px dotted #22aaff;
     background-color: white;
 }
+
+.red {
+    background: red;
+}

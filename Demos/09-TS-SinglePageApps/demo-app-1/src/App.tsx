@@ -8,24 +8,7 @@ import Contact from './Contact';
 function App() {
   return (
     <div>
-      <Switch>
-        <Route path="/products">
-          <Products />
-        </Route>
-
-        <Route path="/about">
-          <About />
-        </Route>
-
-        <Route path="/contact">
-          <Contact />
-        </Route>
-
-        <Route path="/" >
-          <Home />
-        </Route>
-        
-      </Switch>
+      <Home />
     </div>
   );
 }

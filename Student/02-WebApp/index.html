@@ -1,57 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    
+  <head>
+    <meta charset="utf-8" />
+
     <title>My Library</title>
 
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
     </style>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
 
-</head>
-<body>
-
-<script>
-
-    class Book {
+    <script>
+      class Book {
         constructor(title, author) {
-            this.title = title
-            this.author = author
+          this.title = title;
+          this.author = author;
         }
 
         toString() {
-            return `${this.title}, by ${this.author}`
+          return `${this.title}, by ${this.author}`;
         }
-    }
 
-    class Film {
+        getId() {
+          return this.title;
+        }
+      }
+
+      class Film {
         constructor(name, genre, blurb) {
-            this.name = name
-            this.genre = genre
-            this.blurb = blurb
+          this.name = name;
+          this.genre = genre;
+          this.blurb = blurb;
         }
 
         toString() {
-            return `${this.name} [${this.genre}], ${this.blurb}`
+          return `${this.name} [${this.genre}], ${this.blurb}`;
         }
-    }
+      }
 
-    const books = [
-        new Book('Millennium', 'Stieg Larsson'),
-        new Book('A Christmas Carol', 'Charles Dickens'),
-        new Book('The Son', 'Jo Nesbo'),
-    ]
+      const books = [
+        new Book("Millennium", "Stieg Larsson"),
+        new Book("A Christmas Carol", "Charles Dickens"),
+        new Book("The Son", "Jo Nesbo"),
+      ];
 
-    const films = [
-        new Film('Airplane', 'Comedy', 'Classic plane spoof'),
-        new Film('Skyfall', 'Adventure', 'Bond spy yarn'),
-        new Film('Love Actually', 'RomCom', ' Hugh Grant playing Hugh Grant')
-    ]
-    
-</script>
+      const films = [
+        new Film("Airplane", "Comedy", "Classic plane spoof"),
+        new Film("Skyfall", "Adventure", "Bond spy yarn"),
+        new Film("Love Actually", "RomCom", " Hugh Grant playing Hugh Grant"),
+      ];
 
-</body>
+      const bookList = React.createElement(
+        "ul",
+        null,
+        books.map((book, idx) =>
+          React.createElement("li", { key: book.getId() }, book.toString())
+        )
+      );
+
+      const filmList = React.createElement(
+        "ul",
+        null,
+        films.map((film, idx) =>
+          React.createElement("li", { key: idx }, film.toString())
+        )
+      );
+
+      const library = React.createElement(
+        "div",
+        null,
+        React.createElement("h1", null, "My library"),
+        React.createElement("h2", null, "Books"),
+        bookList,
+        React.createElement("h2", null, "Films"),
+        filmList
+      );
+
+      ReactDOM.render(library, document.getElementById("root"));
+    </script>
+  </body>
 </html>

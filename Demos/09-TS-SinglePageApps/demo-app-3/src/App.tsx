@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Menu from './MenuWithLinks';
+// import Menu from './MenuWithLinks';
+import Menu from './MenuWithNavLinks';
 import Home from './Home';
 import Products from './Products';
 import About from './About';

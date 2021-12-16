@@ -10,5 +10,5 @@
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
   },
-  "name": "01-getting-started-with-react"
+  "name": "00-welcome"
 }
